@@ -2,7 +2,7 @@ var outer = function(){
   var name = 'Tyler';
   return function(){
     return 'The original name was ' + name;
-  }
+  };
 };
 
 //////////////////PROBLEM 1////////////////////
@@ -10,11 +10,11 @@ var outer = function(){
 // Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
-
+var inner = outer();
 //Once you do that, invoke inner.
 
   //Code Here
-
+inner();
 
 
 //////////////////PROBLEM 2////////////////////
@@ -33,7 +33,9 @@ var callFriend = function(){
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
-
+  var makeCall = callFriend();
+  makeCall()
+callFriend() 
 
 
 //////////////////PROBLEM 3////////////////////
@@ -43,14 +45,18 @@ var callFriend = function(){
 /*
   Write a function called makeCounter that makes the following code work properly.
 */  //Code Here
-  
-  
-//Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+function makeCounter(num) {
+     return function() {
+       num +=1;
+       console.log(num);
+            return num;
+     };
+   }
+   var count = makeCounter(0);
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -64,9 +70,17 @@ var callFriend = function(){
 // You will need to use the module pattern to achieve this.
 
 function counterFactory(value) {
-  return {}
+  return {
+    inc: function(value) {
+      return value += 1
+    }
+    dec: function(value) {
+      return value -= 1
+    }
+  }
 
     // Code inc function
+    
     // Code dec function
 
 }
@@ -109,12 +123,13 @@ counter = counterFactory(10);
     };
 
     var privateMethod = function(){
-      return welcomeText + firstname + '  ' + lastname;
+      return person.name;
     };
 
     // Anything that is being returned is made public and can be invoked from outside our lexical scope
 
     return {
+      publicMethod
       // Code here
     };
 
@@ -159,5 +174,12 @@ counter = counterFactory(10);
 
   *Hint: Don't let this fool you. Break down what's really happening here.
 */
+var somefunc = function(number) {
+  return function() {
+    console.log(number)
+    return number
+  }
+};
 
+var funcArray = [thefunc(0, thefunc(1), thefunc(2), thefunc(3))];
 
